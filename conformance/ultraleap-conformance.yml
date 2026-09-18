@@ -1,0 +1,91 @@
+generated: '2026-09-18'
+method: searched
+source: >-
+  https://docs.ultraleap.com/openxr/index.html + https://docs.ultraleap.com/openxr/changelog/index.html +
+  https://www.ultraleap.com/legal/ (ISO 9001:2015 and ISO 14001:2015 certificate pages) +
+  https://www.ultraleap.com/products/ (regulatory marks)
+notes: >-
+  LeapC is a native local-IPC API, so the web API standards (OAuth2, OIDC, RFC 9457, JSON:API,
+  SCIM, OData, FHIR, PSD2) do not apply and are recorded conforms:false. The domain standard for
+  Ultraleap's market is Khronos OpenXR: the company ships an implicit OpenXR API layer and its
+  own docs enumerate the OpenXR extensions it serves, including two vendor extensions registered
+  under the XR_ULTRALEAP_ prefix. This is read from the provider's own documentation of the
+  contract it implements, not a marketing claim; no formal Khronos conformance-test result is
+  published, so it is recorded as documented extension support rather than certified conformance.
+  The compliance program the company publishes is quality/environmental (ISO 9001:2015 and
+  ISO 14001:2015 certificates, hosted as images on the legal page) plus hardware regulatory
+  marks; no SOC 2 / ISO 27001 / security certification is published.
+standards:
+- id: openxr
+  name: Khronos OpenXR
+  conforms: true
+  scope: domain-standard
+  evidence: >-
+    https://docs.ultraleap.com/openxr/index.html — "Through the use of our API Layer we are able to
+    supply access to or augment the below extensions"; layer is implicit, no app changes required.
+  extensions_served:
+  - XR_EXT_hand_tracking
+  - XR_EXT_hand_joints_motion_range
+  - XR_EXT_hand_tracking_data_source
+  - XR_MSFT_hand_interaction
+  - XR_ULTRALEAP_hand_tracking_forearm
+  - XR_ULTRALEAP_hand_tracking_hints
+  - XR_FB_hand_tracking_aim
+  extensions_supported_when_runtime_supports:
+  - XR_EXT_hand_interaction
+  - XR_EXT_palm_pose
+  vendor_prefix: XR_ULTRALEAP_
+  changelog: https://docs.ultraleap.com/openxr/changelog/index.html
+- id: openxr-ext-hand-tracking
+  name: XR_EXT_hand_tracking joint model
+  conforms: true
+  scope: domain-standard
+  evidence: >-
+    https://docs.ultraleap.com/openxr/index.html lists XR_EXT_hand_tracking as served by the API layer;
+    changelog 1.7.0 adds XR_ULTRALEAP_hand_tracking_hints.
+- id: keep-a-changelog
+  conforms: true
+  evidence: >-
+    https://docs.ultraleap.com/openxr/changelog/index.html — "The format is based on Keep a Changelog,
+    and this project adheres to Semantic Versioning."
+- id: semver
+  conforms: true
+  evidence: >-
+    https://docs.ultraleap.com/openxr/changelog/index.html; Unity plugin releases com.ultraleap.tracking/7.x;
+    tracking software 6.2.0.
+- id: oauth2
+  conforms: false
+  evidence: Native local IPC API; no OAuth surface.
+- id: openid-connect
+  conforms: false
+  evidence: No identity surface; /.well-known/openid-configuration 404 on www.ultraleap.com.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: LeapC returns eLeapRS result codes, not HTTP problem+json.
+- id: json-api
+  conforms: false
+  evidence: Not an HTTP API.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt 404 on www.ultraleap.com, 403 (absent) on docs.ultraleap.com.
+certifications:
+- id: iso-9001-2015
+  name: ISO 9001:2015 Quality Management
+  published: true
+  evidence: https://www.ultraleap.com/legal/iso-90012015-quality-certificate/
+  note: Certificate published as an image (/assets/images/legal/iso-9001-2015-quality-certificate.png).
+- id: iso-14001-2015
+  name: ISO 14001:2015 Environmental Management
+  published: true
+  evidence: https://www.ultraleap.com/legal/iso-140012015-quality-certificate/
+  note: Certificate published as an image (/assets/images/legal/iso-1401-2015-quality-certificate.png).
+- id: hardware-regulatory-marks
+  name: CE, FCC, UKCA, CCC, KC, PSE, RCM A-NZ, RoHS, REACH (Leap Motion Controller 2)
+  published: true
+  evidence: >-
+    https://www.ultraleap.com/products/ — "Compliance: CE, FCC, UKCA, CCC, KC, PSE, RCM A-NZ, RoHS, REACH";
+    declarations of conformity linked from https://www.ultraleap.com/legal/
+security_certifications:
+  soc2: false
+  iso27001: false
+  note: No security or privacy certification is published; not a hosted service.

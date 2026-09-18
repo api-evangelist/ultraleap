@@ -1,7 +1,17 @@
 aid: ultraleap
 name: Ultraleap
-description: 'Ultraleap is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Ultraleap Limited (Bristol, UK) is the hand-tracking and mid-air haptics company formed
+  in 2019 when Ultrahaptics acquired Leap Motion. It ships the Leap Motion Controller 2 and
+  Stereo IR 170 / 3Di hand-tracking cameras, the Ultraleap Hand Tracking Software
+  (Gemini V5, now Hyperion V6) with its native LeapC C API, first-party Unity and Unreal
+  plugins, an implicit OpenXR API layer implementing XR_EXT_hand_tracking, Python
+  bindings, a LeapJS-compatible tracking WebSocket server, and the TouchFree touchless
+  interaction tooling for web and Unity. Its ultrasonic haptics SDK is supplied on
+  request rather than published. The developer surface is a locally installed
+  SDK and service, not a hosted HTTP API, so there is no OpenAPI or base URL. In 2025
+  the company announced it is joining ROLI, the music-technology company.
+image: https://avatars.githubusercontent.com/u/51484212?v=4
 url: https://raw.githubusercontent.com/api-evangelist/ultraleap/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
@@ -12,12 +22,164 @@ created: '2026-09-18'
 modified: '2026-09-18'
 tags:
 - Company
-apis: []
+- Hand Tracking
+- Computer Vision
+- Spatial Computing
+- Haptics
+- Augmented Reality
+- Virtual Reality
+- XR
+- Gesture Recognition
+- OpenXR
+- SDK
+- Hardware
+- Human Computer Interaction
+apis:
+- aid: ultraleap:leapc-tracking-api
+  name: LeapC Tracking API
+  description: >-
+    LeapC is the native C API of the Ultraleap Hand Tracking Software. A client opens a
+    connection to the locally running tracking service and polls it for tracking frames
+    (hands, palms, digits, bones), device events, image frames, policy and configuration
+    responses, plus the Hyperion V6 hinting, marker-tracking and direct-camera-access
+    surfaces. It is the layer the Unity, Unreal, OpenXR and Python bindings are built on.
+    There is no hosted HTTP base URL; the transport is local IPC to the tracking service.
+  humanURL: https://docs.ultraleap.com/api-reference/tracking-api/index.html
+  tags:
+  - Hand Tracking
+  - Native API
+  - C
+  properties:
+  - type: Documentation
+    url: https://docs.ultraleap.com/api-reference/tracking-api/leapc-guide.html
+  - type: APIReference
+    url: https://docs.ultraleap.com/api-reference/tracking-api/api-reference.html
+  - type: Examples
+    url: https://docs.ultraleap.com/api-reference/tracking-api/examples.html
+  - type: ReleaseNotes
+    url: https://docs.ultraleap.com/hand-tracking/Hyperion/index.html
+- aid: ultraleap:openxr-api-layer
+  name: Ultraleap OpenXR API Layer
+  description: >-
+    An implicit Khronos OpenXR API layer, installed with the Hand Tracking Software, that
+    serves XR_EXT_hand_tracking, XR_EXT_hand_joints_motion_range,
+    XR_EXT_hand_tracking_data_source, XR_MSFT_hand_interaction,
+    XR_ULTRALEAP_hand_tracking_forearm, XR_ULTRALEAP_hand_tracking_hints and
+    XR_FB_hand_tracking_aim to any OpenXR application without code changes.
+  humanURL: https://docs.ultraleap.com/openxr/index.html
+  tags:
+  - OpenXR
+  - Hand Tracking
+  - XR
+  properties:
+  - type: Documentation
+    url: https://docs.ultraleap.com/openxr/index.html
+  - type: ChangeLog
+    url: https://docs.ultraleap.com/openxr/changelog/index.html
+  - type: SourceCode
+    url: https://github.com/ultraleap/OpenXRHandTracking
+- aid: ultraleap:tracking-websocket
+  name: Ultraleap Tracking WebSocket
+  description: >-
+    An open-source WebSocket server from Ultraleap that restores the LeapJS-compatible
+    surface removed when Leap Motion Orion V4 was replaced by Ultraleap Gemini V5. It streams
+    tracking data over the legacy LeapJS v6 JSON protocol so browser applications can
+    consume hand tracking. It runs locally alongside the tracking service; the endpoint is
+    a loopback WebSocket, not a hosted API.
+  humanURL: https://github.com/ultraleap/UltraleapTrackingWebSocket
+  tags:
+  - WebSocket
+  - Streaming
+  - Browser
+  properties:
+  - type: SourceCode
+    url: https://github.com/ultraleap/UltraleapTrackingWebSocket
+  - type: Documentation
+    url: https://github.com/ultraleap/UltraleapTrackingWebSocket/blob/main/README.md
+- aid: ultraleap:touchfree-tooling
+  name: TouchFree Tooling
+  description: >-
+    TouchFree turns Ultraleap hand tracking into touchless cursor and gesture input for
+    kiosks, digital signage and existing 2D user interfaces. The TouchFree Service runs
+    locally and the Tooling for Web (TypeScript) and Tooling for Unity client libraries
+    connect to it to receive input actions and drive UI components.
+  humanURL: https://docs.ultraleap.com/TouchFree/touchfree-user-manual/index.html
+  tags:
+  - Touchless Interaction
+  - Kiosk
+  - Web
+  - Unity
+  properties:
+  - type: Documentation
+    url: https://docs.ultraleap.com/TouchFree/touchfree-user-manual/tooling-for-web.html
+  - type: SourceCode
+    url: https://github.com/ultraleap/TouchFreeWebTooling
+  - type: Components
+    url: components/ultraleap-components.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: IssueTracker
+  url: https://github.com/ultraleap/UltraleapTrackingWebSocket/issues
+- type: ErrorCatalog
+  url: errors/ultraleap-error-codes.yml
+- type: Conventions
+  url: conventions/ultraleap-conventions.yml
+- type: DataModel
+  url: data-model/ultraleap-data-model.yml
 - type: Website
-  url: https://www.hiive.com/securities/ultraleap-stock
+  url: https://www.ultraleap.com/
+- type: DeveloperPortal
+  url: https://docs.ultraleap.com/
+- type: Documentation
+  url: https://docs.ultraleap.com/hand-tracking/index.html
+- type: APIReference
+  url: https://docs.ultraleap.com/api-reference/tracking-api/index.html
+- type: GettingStarted
+  url: https://docs.ultraleap.com/hand-tracking/getting-started.html
+- type: Downloads
+  url: https://www.ultraleap.com/downloads/
+- type: Products
+  url: https://www.ultraleap.com/products/
+- type: Blog
+  url: https://docs.ultraleap.com/ultralab/index.html
+- type: GitHubOrganization
+  url: https://github.com/ultraleap
+- type: Support
+  url: https://www.ultraleap.com/contact/
+- type: Community
+  url: https://discord.com/invite/3VCndThqxS
+- type: TermsOfService
+  url: https://www.ultraleap.com/legal/ultraleap-ltd-terms-conditions-of-business/
+- type: PrivacyPolicy
+  url: https://www.ultraleap.com/legal/privacy-policy/
+- type: License
+  url: https://www.ultraleap.com/legal/enterprise-tracking-licence/
+- type: ChangeLog
+  url: https://docs.ultraleap.com/openxr/changelog/index.html
+- type: ChangeLog
+  url: changelog/ultraleap-changelog.yml
+- type: Packages
+  url: packages/ultraleap-packages.yml
+- type: SDKs
+  url: packages/ultraleap-packages.yml
+- type: Components
+  url: components/ultraleap-components.yml
+- type: Conformance
+  url: conformance/ultraleap-conformance.yml
+- type: Compliance
+  url: conformance/ultraleap-conformance.yml
+- type: Lifecycle
+  url: lifecycle/ultraleap-lifecycle.yml
+- type: LLMsTxt
+  url: llms/ultraleap-llms.txt
+- type: DomainSecurity
+  url: security/ultraleap-domain-security.yml
+x-enrichment:
+  date: '2026-09-18'
+  status: enriched
+  artifacts_added: 8
+  pass: local-v3

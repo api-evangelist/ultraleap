@@ -1,0 +1,129 @@
+generated: '2026-09-18'
+method: searched
+source: https://docs.ultraleap.com/openxr/changelog/index.html + https://www.ultraleap.com/downloads/leap-motion-controller-2/
+  + https://github.com/ultraleap/UnityPlugin/releases
+notes: Ultraleap publishes one dated-by-version changelog for its OpenXR API layer (Keep a Changelog format, Semantic
+  Versioning, 26 entries from 1.0.0-beta.1 to 1.7.0; the page carries no calendar dates). The tracking software
+  itself (Hyperion) publishes release notes per major version on the downloads page (v6.2.0 released 22.09.2025)
+  and the Unity plugin publishes GitHub releases (com.ultraleap.tracking/7.3.0 on 2026-02-25). No changelog exists
+  for the LeapC API as a separate document; API changes ride the tracking-software release notes.
+changelogs:
+- name: OpenXR API Layer
+  url: https://docs.ultraleap.com/openxr/changelog/index.html
+  scheme: semver
+  format: keep-a-changelog
+  current_version: 1.7.0
+  entry_count: 26
+  dated: false
+  entries:
+  - version: 1.7.0
+    date: null
+    breaking: false
+    additions:
+    - Support for XR_ULTRALEAP_hand_tracking_hints which exposes the LeapC hinting API via OpenXR.
+    - Support for detecting Ultraleap hand-tracking on Varjo platforms.
+    changes:
+    - Reworked the filtering during extrapolation to provide a better experience at a wider range of tracking framerates.
+    - The Layer will now disable if it is unable to access it’s JVM classes, rather than failing initialisation.
+    - Changed to delay load LeapC.dll, so it doesn’t conflict with a version of LeapC.dll already in the address
+      space.
+    - Changed how Frames are constructed internally to avoid unintentional copying issues.
+    - Removed usage of xr_generated_dispatch_table and replaced with selective table generation using OpenXR reflection.
+    fixes:
+    - An issue where embedded layers weren’t being discovered correctly.
+    - Error handling when requested hand joints at an invalid timestamp.
+    - Default device transformed were potentially uninitialised for unknown platforms.
+    - An issue where initial newly tracked hands was using invalid data due to filtering.
+    known_issues:
+    - First frame of data might have erroneous joint positions when the hand is initialised at a high velocity.
+  - version: 1.6.7
+    date: null
+    breaking: false
+    changes:
+    - Updated to newer codes signing certificates.
+    fixes:
+    - An issue where multiple OpenXR applications would cause the apps hint state to desync from LeapC’s.
+  - version: 1.6.6
+    date: null
+    breaking: false
+    fixes:
+    - An issue where hints were sent incorrectly on first app launch causing incorrect device transforms on apps
+      that open in passthrough mode.
+  - version: 1.6.5
+    date: null
+    breaking: false
+    fixes:
+    - Added service version check to prevent crash on Linux when calling for hinting functionality on an older client.
+    - An issue where tracking mode wasn’t getting set to HMD automatically.
+  - version: 1.6.4
+    date: null
+    breaking: false
+    additions:
+    - Hinting for IMMERSIVE and PASSTHROUGH modes depending on the current XrEnvironmentBlendMode.
+  - version: 1.6.3
+    date: null
+    breaking: false
+    changes:
+    - Updated LeapSDK to v5.17.
+  - version: 1.6.2
+    date: null
+    breaking: false
+    additions:
+    - Added the ability to throw exceptions via the DEBUG flag.
+    changes:
+    - Updated Android build-chain to NDK 26 and compile SDK 34.
+    - No longer explicitly wait for binding on Android to avoid multithreaded callback complexity.
+    - Fixed leaking of C++ exceptions in some scenarios, if they occur XR_ERROR_RUNTIME_ERROR will be returned instead.
+    fixes:
+    - Fixed an issue where resuming after sleep on android would crash applications.
+    - Fixed an issue where connecting controllers / having controllers connected during runtime causes crashes on
+      SteamVR.
+    known_issues:
+    - Some headsets hand tracking will emulate controller interaction profiles in the absence and therefore needs
+      to be disabled for the controller switching feature to work.
+    - xrGetInstanceProcAddr has issues when being called for certain functions by another API Layer.
+  - version: 1.6.1
+    date: null
+    breaking: false
+    additions:
+    - Support for initialising the layer through XR_KHR_loader_init_android on Android platforms.
+    - Support for Android platforms of API version greater than 29 on OpenXR loaders newer than 1.0.28.
+    fixes:
+    - Fixed inclusion of OpenXR manifest asset in embedded layer AAR.
+    - Fixed an issue where controller switching would fail due to stale cached state.
+    - Fixed a bug where controller switching wasn’t working correctly with MRTK3.
+    - Fixed an issue where session based state wasn’t correctly clearing on xrDestroySession.
+    - Fixed an issue where hands wouldn’t reappear on subsequent play sessions after the first in Unreal.
+    - Fixed configuration variables state going stale by reloading config variables on creation of an XrInstance.
+    known_issues:
+    - Aim ray visuals don’t work correctly when using controller with Hand Tracking enabled in MRTK3.
+    - xrLocateSpace sometimes returns XR_ERROR_RUNTIME_FAILURE with Pico Streaming Assistant and SteamVR.
+    - Applications on Android API versions >29 crash on resume from sleep.
+- name: Ultraleap Hyperion tracking software
+  url: https://www.ultraleap.com/downloads/leap-motion-controller-2/
+  scheme: semver
+  current_version: 6.2.0
+  dated: true
+  entries:
+  - version: 6.2.0
+    date: '2025-09-22'
+    breaking: false
+    highlights:
+    - Windows/macOS/Raspberry Pi builds 22.09.2025; PICO/Vive/Meta 24.09.2025; Linux 28.10.2025
+    note: 'Downloads page lists V6 features: Direct Camera Access APIs, AR Marker Tracking, tracking model for hands
+      handling objects, High Performance Mode, Hinting API.'
+- name: Unity plugin (com.ultraleap.tracking)
+  url: https://github.com/ultraleap/UnityPlugin/releases
+  scheme: semver
+  current_version: 7.3.0
+  dated: true
+  entries:
+  - version: 7.3.0
+    date: '2026-02-25'
+    breaking: false
+  - version: 7.2.0
+    date: '2025-01-20'
+    breaking: false
+  - version: 7.1.0
+    date: '2024-09-09'
+    breaking: false

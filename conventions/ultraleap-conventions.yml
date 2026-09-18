@@ -1,0 +1,51 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  https://raw.githubusercontent.com/ultraleap/leapc-python-bindings/main/leapc-python-api/src/leap/
+  + https://docs.ultraleap.com/api-reference/tracking-api/leapc-guide.html
+notes: >-
+  LeapC is a native C API using local IPC to the Ultraleap Hand Tracking Service,
+  not an HTTP API. The cross-cutting semantics below are the native equivalents of
+  the usual web conventions. There is NO idempotency-key contract, NO cursor/offset
+  pagination, NO HTTP request-id header and NO OAuth — those web conventions do not
+  apply to a polled local message stream, and are recorded here as not-applicable
+  rather than fabricated. The dominant convention is the connection + poll-loop
+  (message pump) model.
+transport:
+  style: native-c-ipc
+  detail: LeapC client opens a LEAP_CONNECTION to the local Hand Tracking Service; no network base URL.
+authentication:
+  style: none
+  detail: Access is local process-to-service IPC; there is no API key, token or OAuth surface.
+delivery_model:
+  style: poll-loop
+  detail: >-
+    LeapPollConnection() drives a message pump that returns LEAP_CONNECTION_MESSAGE
+    events (tracking, device, policy, config, image, log). Callers dispatch on the
+    EventType discriminator. This replaces request/response for streamed data.
+  concurrency: >-
+    LeapPollConnection must not be called concurrently from multiple threads
+    (eLeapRS_ConcurrentPoll); serialize the poll loop.
+frames:
+  identity: LEAP_TRACKING_EVENT carries tracking_frame_id and a timestamp (microseconds, LeapC clock).
+  interpolation: LeapInterpolateFrame()/LeapGetFrameSize() allow resampling a frame to a requested timestamp.
+  clock: LeapGetNow() returns the current LeapC timestamp for synchronizing to a target rendering clock.
+idempotency:
+  supported: false
+  detail: Not applicable — streamed tracking frames are read-only samples, not mutating requests.
+pagination:
+  supported: false
+  detail: Not applicable — tracking data is a continuous polled stream, not a paged collection.
+error_model:
+  style: native-enum
+  detail: Every LeapC function returns an eLeapRS result; eLeapRS_Success is 0, all others are errors. See errors/leap-motion-error-codes.yml.
+configuration:
+  policy_flags: LeapSetPolicyFlags() sets tracking policies (e.g. images, optimize-for-HMD, map-points).
+  tracking_mode: LeapSetTrackingMode() selects desktop / screentop / HMD tracking modes.
+versioning:
+  detail: See lifecycle/leap-motion-lifecycle.yml — SDK/service versioning, Orion V4 to Gemini V5 migration.
+cross_links:
+  errors: errors/leap-motion-error-codes.yml
+  data_model: data-model/leap-motion-data-model.yml
+  lifecycle: lifecycle/leap-motion-lifecycle.yml
+  conformance: conformance/leap-motion-conformance.yml

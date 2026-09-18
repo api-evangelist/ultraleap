@@ -1,0 +1,94 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  https://raw.githubusercontent.com/ultraleap/leapc-python-bindings/main/leapc-python-api/src/leap/
+  (datatypes.py, events.py, enums.py) — first-party Gemini LeapC Python bindings
+notes: >-
+  LeapC has no REST resources or $ref graph; its "data model" is the set of C
+  structs delivered on the message pump. This ERD is derived from the first-party
+  Python bindings that wrap the LeapC structs. A LEAP_CONNECTION is polled with
+  LeapPollConnection(), which yields LEAP_CONNECTION_MESSAGE events; the marquee
+  payload is LEAP_TRACKING_EVENT, which carries an array of LEAP_HAND, each hand
+  carrying a palm and five digits, each digit carrying four bones.
+root: LEAP_CONNECTION
+entities:
+- name: Connection
+  cstruct: LEAP_CONNECTION
+  description: A client session to the local Ultraleap Hand Tracking Service; opened, then driven by a poll loop.
+- name: Event
+  cstruct: LEAP_CONNECTION_MESSAGE
+  description: A polled message with an EventType discriminator (tracking, device, policy, config, log, image, connection).
+- name: TrackingEvent
+  cstruct: LEAP_TRACKING_EVENT
+  description: A tracking frame with a frame id, timestamp, framerate and an array of hands.
+  fields: [info, timestamp, tracking_frame_id, framerate, hands]
+- name: Hand
+  cstruct: LEAP_HAND
+  description: A single tracked hand with type (left/right), a palm and five digits.
+  fields: [id, type, palm, digits, arm]
+- name: Palm
+  cstruct: LEAP_PALM
+  fields: [position, stabilized_position, velocity, normal, width, direction, orientation]
+- name: Digit
+  cstruct: LEAP_DIGIT
+  description: A finger, composed of four bones plus an is_extended flag.
+  fields: [finger_id, bones, is_extended]
+- name: Bone
+  cstruct: LEAP_BONE
+  fields: [prev_joint, next_joint, width, rotation]
+- name: Device
+  cstruct: LEAP_DEVICE
+  description: A physical tracking camera; referenced by device events by device_id.
+- name: Vector
+  cstruct: LEAP_VECTOR
+  fields: [x, y, z]
+- name: Quaternion
+  cstruct: LEAP_QUATERNION
+  fields: [x, y, z, w]
+relationships:
+- from: Connection
+  to: Event
+  kind: has_many
+  via: LeapPollConnection message pump
+- from: TrackingEvent
+  to: Hand
+  kind: has_many
+  via: hands (nHands / pHands)
+- from: Hand
+  to: Palm
+  kind: has_one
+  via: palm
+- from: Hand
+  to: Digit
+  kind: has_many
+  via: digits (5 fingers)
+- from: Digit
+  to: Bone
+  kind: has_many
+  via: bones (4 per digit)
+- from: Palm
+  to: Vector
+  kind: has_many
+  via: position / velocity / normal / direction
+- from: Bone
+  to: Quaternion
+  kind: has_one
+  via: rotation
+- from: Event
+  to: Device
+  kind: belongs_to
+  via: metadata.device_id
+event_types:
+- ConnectionEvent
+- ConnectionLostEvent
+- DeviceEvent
+- DeviceFailureEvent
+- DeviceStatusChangeEvent
+- DeviceLostEvent
+- PolicyEvent
+- TrackingEvent
+- ImageCompleteEvent
+- ImageRequestErrorEvent
+- LogEvent
+- ConfigResponseEvent
+- ConfigChangeEvent

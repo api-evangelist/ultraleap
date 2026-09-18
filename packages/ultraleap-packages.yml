@@ -1,0 +1,139 @@
+generated: '2026-09-18'
+method: searched
+source: >-
+  https://package.openupm.com/com.ultraleap.tracking +
+  https://package.openupm.com/com.ultraleap.tracking.preview + GitHub releases/tags
+  under https://github.com/ultraleap + https://www.ultraleap.com/downloads/leap-motion-controller-2/
+notes: >-
+  Ultraleap does not sell a hosted API, so its client libraries are engine plugins and
+  native/language bindings for the LeapC hand-tracking API rather than HTTP SDKs. Registry
+  coverage is Unity UPM via OpenUPM plus GitHub source releases and zip downloads from
+  the company's own S3 bucket. Probed 2026-09-18 and NOT found as first-party: npm
+  (search "ultraleap" returns 0 packages; the TouchFreeWebTooling package.json names
+  itself "touchfree" but registry.npmjs.org/touchfree is 404), PyPI (leapc-python-bindings,
+  leapc-cffi, leapc-python-api, ultraleap, handybeam all 404), NuGet (only third-party
+  vvvv and Silk.NET wrappers). The haptics SDK is supplied on request
+  (docs.ultraleap.com/haptics: "Get in touch for our latest software releases") and is
+  not listed because it is not published.
+packages:
+- language: csharp
+  platform: unity
+  registry: openupm
+  name: com.ultraleap.tracking
+  version: 7.3.0
+  published: '2026-02-25'
+  url: https://openupm.com/packages/com.ultraleap.tracking/
+  install: openupm add com.ultraleap.tracking
+  repository: https://github.com/ultraleap/UnityPlugin
+  docs: https://docs.ultraleap.com/xr-and-tabletop/xr/unity/plugin/index.html
+  license: Apache-2.0
+  official: true
+  note: Version and date read from the OpenUPM registry metadata (dist-tags.latest + time); matches GitHub release com.ultraleap.tracking/7.3.0.
+- language: csharp
+  platform: unity
+  registry: openupm
+  name: com.ultraleap.tracking.preview
+  version: 7.3.0
+  published: '2026-02-25'
+  url: https://openupm.com/packages/com.ultraleap.tracking.preview/
+  install: openupm add com.ultraleap.tracking.preview
+  repository: https://github.com/ultraleap/UnityPlugin
+  license: Apache-2.0
+  official: true
+  note: Preview companion package to com.ultraleap.tracking; version/date from OpenUPM metadata.
+- language: cpp
+  platform: unreal
+  registry: github
+  name: UnrealPlugin
+  version: v5.0.1
+  published: '2024-06-26'
+  url: https://github.com/ultraleap/UnrealPlugin
+  install: Download the release from GitHub and add the plugin to your Unreal project
+  repository: https://github.com/ultraleap/UnrealPlugin
+  docs: https://docs.ultraleap.com/xr-and-tabletop/xr/unreal/index.html
+  license: Apache-2.0
+  official: true
+  note: Latest GitHub release (releases/latest). Not on a package registry.
+- language: python
+  registry: github
+  name: leapc-python-bindings
+  version: null
+  published: null
+  url: https://github.com/ultraleap/leapc-python-bindings
+  install: pip install -r requirements.txt && pip install -e leapc-python-api
+  repository: https://github.com/ultraleap/leapc-python-bindings
+  license: Apache-2.0
+  official: true
+  note: >-
+    Not published to PyPI (404); installed from source. The repo has no releases or tags;
+    the in-tree setup.py names the package "leap" at 0.0.1. Last commit on main
+    2024-06-24. Requires Gemini tracking software 5.17+.
+- language: c
+  platform: native
+  registry: vendor
+  name: Ultraleap Hyperion Tracking SDK (LeapC)
+  version: 6.2.0
+  published: '2025-09-22'
+  url: https://www.ultraleap.com/downloads/leap-motion-controller-2/
+  install: Install the Ultraleap Hyperion tracking software for your OS; the SDK (LeapC headers + library) ships inside it
+  docs: https://docs.ultraleap.com/api-reference/tracking-api/index.html
+  license: Ultraleap Enterprise Tracking Licence
+  official: true
+  note: >-
+    Version and release date read from the downloads page (Ultraleap Hyperion v6.2.0,
+    released 22.09.2025 for Windows/macOS/Raspberry Pi, 24.09.2025 for PICO/Vive/Meta,
+    28.10.2025 for Linux). Distributed as installers from s3.eu-west-1.amazonaws.com/downloads.ultraleap.com.
+- language: typescript
+  platform: web
+  registry: vendor
+  name: TouchFree Tooling for Web
+  version: 1.4.0
+  published: null
+  url: https://github.com/ultraleap/TouchFreeWebTooling
+  install: Download touchfree-tooling-web-1.4.0.zip from the Ultraleap downloads page or build from the GitHub repo
+  repository: https://github.com/ultraleap/TouchFreeWebTooling
+  docs: https://docs.ultraleap.com/TouchFree/touchfree-user-manual/tooling-for-web.html
+  license: Apache-2.0
+  official: true
+  note: >-
+    Version 1.4.0 read from the downloads page zip name and the repo package.json;
+    the downloads page shows no release date. The repo also carries a release/2.0.0 tag
+    (2023-11-07) that is not offered on the downloads page. Not published to npm.
+- language: csharp
+  platform: unity
+  registry: vendor
+  name: TouchFree Tooling for Unity
+  version: 1.1.0
+  published: null
+  url: https://github.com/ultraleap/TouchFreeUnityTooling
+  install: Download touchfree-tooling-unity-1.1.0.zip from the Ultraleap downloads page
+  repository: https://github.com/ultraleap/TouchFreeUnityTooling
+  license: Apache-2.0
+  official: true
+  note: Version from the downloads page zip name; no release date shown and no GitHub releases.
+- language: cpp
+  platform: native
+  registry: github
+  name: UltraleapTrackingWebSocket
+  version: null
+  published: null
+  url: https://github.com/ultraleap/UltraleapTrackingWebSocket
+  install: Build from source (see README)
+  repository: https://github.com/ultraleap/UltraleapTrackingWebSocket
+  license: Apache-2.0
+  official: true
+  note: No releases or tags; last commit on main 2025-02-19. Restores the LeapJS v6 WebSocket protocol for Gemini V5+.
+- language: cpp
+  platform: openxr
+  registry: github
+  name: OpenXRHandTracking (API layer source)
+  version: 1.2.0
+  published: '2022-05-19'
+  url: https://github.com/ultraleap/OpenXRHandTracking
+  repository: https://github.com/ultraleap/OpenXRHandTracking
+  license: Apache-2.0
+  official: true
+  note: >-
+    Archived repo; the shipped implicit OpenXR API layer is now installed with the
+    tracking software and its changelog (1.7.0 current) lives at
+    docs.ultraleap.com/openxr/changelog/.

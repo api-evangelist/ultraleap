@@ -1,0 +1,48 @@
+# Ultraleap
+
+> Ultraleap Limited (Bristol, UK) makes hand-tracking cameras (Leap Motion Controller 2, Stereo IR 170, 3Di) and mid-air ultrasonic haptics. Its developer surface is a locally installed Hand Tracking Software (Hyperion V6) with a native C API called LeapC, plus Unity and Unreal plugins, an implicit OpenXR API layer, Python bindings, a LeapJS-compatible WebSocket server and the TouchFree touchless-interaction tooling. There is no hosted HTTP API, OpenAPI or base URL. In 2025 the company announced it is joining ROLI.
+
+<!-- generated: 2026-09-18 | method: generated | source: apis.yml + docs.ultraleap.com + github.com/ultraleap (no provider llms.txt found: www.ultraleap.com/llms.txt 404, docs.ultraleap.com/llms.txt absent) -->
+
+## Documentation
+
+- [Developer documentation](https://docs.ultraleap.com/): Sphinx-built docs for hand tracking, OpenXR, Unity, Unreal and TouchFree
+- [Hand tracking overview](https://docs.ultraleap.com/hand-tracking/index.html): hardware, software, camera setup and integration tips
+- [Getting started](https://docs.ultraleap.com/hand-tracking/getting-started.html): install the tracking software and pick a plugin
+- [Hyperion overview](https://docs.ultraleap.com/hand-tracking/Hyperion/index.html): V6 features — Hinting API, tracking models, AR marker tracking, performance modes, direct camera access
+- [Gemini V5.2+ migration guide](https://docs.ultraleap.com/hand-tracking/gemini-migration.html): upgrading from earlier tracking software
+
+## API reference
+
+- [LeapC Tracking API](https://docs.ultraleap.com/api-reference/tracking-api/index.html): native C API of the tracking service (local IPC, no HTTP)
+- [LeapC guide](https://docs.ultraleap.com/api-reference/tracking-api/leapc-guide.html): connections, polling, frames, images, hints
+- [LeapC API reference](https://docs.ultraleap.com/api-reference/tracking-api/api-reference.html): structs, enums, functions
+- [LeapC examples](https://docs.ultraleap.com/api-reference/tracking-api/examples.html): connection, polling, callback, images, multi-device, recording playback
+- [OpenXR API layer](https://docs.ultraleap.com/openxr/index.html): implicit layer serving XR_EXT_hand_tracking and related extensions
+- [OpenXR layer changelog](https://docs.ultraleap.com/openxr/changelog/index.html): Keep a Changelog / semver, current 1.7.0
+
+## SDKs and plugins
+
+- [Unity plugin (com.ultraleap.tracking 7.3.0, OpenUPM)](https://github.com/ultraleap/UnityPlugin): Apache-2.0
+- [Unreal plugin (v5.0.1)](https://github.com/ultraleap/UnrealPlugin): Apache-2.0
+- [LeapC Python bindings](https://github.com/ultraleap/leapc-python-bindings): source install, requires tracking software 5.17+
+- [Ultraleap Tracking WebSocket](https://github.com/ultraleap/UltraleapTrackingWebSocket): LeapJS v6 protocol server for browsers
+- [TouchFree Tooling for Web](https://github.com/ultraleap/TouchFreeWebTooling): TypeScript touchless-input library
+- [Downloads (Hyperion 6.2.0 installers, TouchFree, demos)](https://www.ultraleap.com/downloads/)
+- [GitHub organization](https://github.com/ultraleap)
+
+## Company
+
+- [Website](https://www.ultraleap.com/)
+- [Products](https://www.ultraleap.com/products/)
+- [Contact and support](https://www.ultraleap.com/contact/): info@ultraleap.com, support@ultraleap.com
+- [Discord community](https://discord.com/invite/3VCndThqxS)
+- [Legal (licences, ISO 9001/14001 certificates, declarations of conformity)](https://www.ultraleap.com/legal/)
+- [Enterprise Tracking Licence](https://www.ultraleap.com/legal/enterprise-tracking-licence/)
+- [Privacy policy](https://www.ultraleap.com/legal/privacy-policy/)
+- [Patents](https://www.ultraleap.com/patents/)
+
+## Optional
+
+- [Ultralab blog](https://docs.ultraleap.com/ultralab/index.html)
+- [Haptics overview](https://docs.ultraleap.com/haptics/index.html): haptics SDK is supplied on request, not published

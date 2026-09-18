@@ -1,0 +1,90 @@
+generated: '2026-07-20'
+method: searched
+source: https://raw.githubusercontent.com/ultraleap/leapc-python-bindings/main/leapc-python-api/src/leap/exceptions.py
+notes: >-
+  LeapC does not use HTTP status codes or an RFC 9457 problem+json envelope — it
+  is a native C API. Every LeapC function returns an eLeapRS result enum; success
+  is eLeapRS_Success and any other value is an error. This catalog is the eLeapRS
+  result set as published in Ultraleap's first-party Gemini LeapC Python bindings
+  (leap.exceptions), which translates each eLeapRS value into a typed LeapError.
+  The `code` is the LeapC symbolic constant; the mapped Python exception is given
+  for reference. Not payments-related, so no decline codes.
+format: native-enum
+envelope_field: eLeapRS
+problems:
+- code: eLeapRS_Success
+  title: Success
+  exception: (none)
+  remediation: The operation completed successfully.
+- code: eLeapRS_UnknownError
+  title: Unknown error
+  exception: LeapUnknownError
+  remediation: An undetermined error has occurred; check service logs and retry.
+- code: eLeapRS_InvalidArgument
+  title: Invalid argument
+  exception: LeapInvalidArgumentError
+  remediation: An invalid argument was passed to a LeapC function; validate handles and parameters.
+- code: eLeapRS_InsufficientResources
+  title: Insufficient resources
+  exception: LeapInsufficientResourcesError
+  remediation: The service could not allocate resources to complete the request.
+- code: eLeapRS_InsufficientBuffer
+  title: Insufficient buffer
+  exception: LeapInsufficientBufferError
+  remediation: The provided buffer was too small; query the required size and resize before retrying.
+- code: eLeapRS_Timeout
+  title: Timeout
+  exception: LeapTimeoutError
+  remediation: The operation timed out (e.g. LeapPollConnection with no message ready); retry with an appropriate timeout.
+- code: eLeapRS_NotConnected
+  title: Not connected
+  exception: LeapNotConnectedError
+  remediation: The LEAP_CONNECTION is not open to the tracking service; open and await a connection event.
+- code: eLeapRS_HandshakeIncomplete
+  title: Handshake incomplete
+  exception: LeapHandshakeIncompleteError
+  remediation: The client has not completed the connection handshake with the service; wait for eLeapConnectionStatus_Connected.
+- code: eLeapRS_BufferSizeOverflow
+  title: Buffer size overflow
+  exception: LeapBufferSizeOverflowError
+  remediation: A computed buffer size exceeded the maximum; reduce the request size.
+- code: eLeapRS_ProtocolError
+  title: Protocol error
+  exception: LeapProtocolError
+  remediation: The client/service protocol was violated; ensure client and tracking service versions are compatible.
+- code: eLeapRS_InvalidClientID
+  title: Invalid client ID
+  exception: LeapInvalidClientIDError
+  remediation: A message referenced an unknown client id; the request session is no longer valid.
+- code: eLeapRS_UnexpectedClosed
+  title: Unexpected closed
+  exception: LeapUnexpectedClosedError
+  remediation: The connection was closed unexpectedly; re-open the connection and resume polling.
+- code: eLeapRS_UnknownImageFrameRequest
+  title: Unknown image frame request
+  exception: LeapUnknownImageFrameRequestError
+  remediation: An image was requested for a frame the service no longer has; request images for a current frame.
+- code: eLeapRS_RoutineIsNotSeer
+  title: Routine is not Seer
+  exception: LeapRoutineIsNotSeerError
+  remediation: A routine was invoked that requires the Seer tracking backend.
+- code: eLeapRS_TimestampTooEarly
+  title: Timestamp too early
+  exception: LeapTimestampTooEarlyError
+  remediation: A requested interpolation timestamp precedes the available tracking history.
+- code: eLeapRS_ConcurrentPoll
+  title: Concurrent poll
+  exception: LeapConcurrentPollError
+  remediation: LeapPollConnection was called concurrently from more than one thread; serialize polling.
+- code: eLeapRS_NotAvailable
+  title: Not available
+  exception: LeapNotAvailableError
+  remediation: The requested feature or resource is not available in the current configuration.
+- code: eLeapRS_NotStreaming
+  title: Not streaming
+  exception: LeapNotStreamingError
+  remediation: The device is not streaming tracking data; start streaming before requesting frames.
+- code: eLeapRS_CannotOpenDevice
+  title: Cannot open device
+  exception: LeapCannotOpenDeviceError
+  remediation: The tracking device could not be opened; check the connection and that no other client holds it.

@@ -1,0 +1,56 @@
+generated: '2026-09-18'
+method: searched
+source: >-
+  https://docs.ultraleap.com/TouchFree/touchfree-user-manual/tooling-for-web.html +
+  https://docs.ultraleap.com/TouchFree/touchless-interfaces/ui-components.html +
+  https://github.com/ultraleap/TouchFreeWebTooling + https://github.com/ultraleap/TouchFreeUnityTooling +
+  https://www.ultraleap.com/downloads/leap-motion-controller-2/
+notes: >-
+  Distinct from the native SDK bindings in packages/. Ultraleap ships client-side interaction
+  component libraries — the TouchFree family, which turns hand tracking into touchless cursor
+  and gesture input for kiosks and existing 2D UIs — plus the interaction/UI prefab sets inside
+  the Unity plugin. TouchFree Tooling for Web is a TypeScript library (package name "touchfree"
+  in its package.json, not published to npm) distributed as a zip from the downloads page and
+  as source on GitHub.
+component_families:
+- family: TouchFree
+  description: Touchless interaction layer that maps Ultraleap hand tracking to on-screen cursor and gesture input for kiosks, signage and existing UIs; the TouchFree Service runs locally and client tooling connects to it.
+  docs: https://docs.ultraleap.com/TouchFree/touchfree-user-manual/index.html
+  design_guidance: https://docs.ultraleap.com/TouchFree/touchless-interfaces/ui-components.html
+  components:
+  - name: TouchFree Tooling for Web
+    kind: web-library
+    language: typescript
+    version: 1.4.0
+    loader: https://github.com/ultraleap/TouchFreeWebTooling
+    download: https://s3.eu-west-1.amazonaws.com/downloads.ultraleap.com/software/touchfree/1.4.0/touchfree-tooling-web-1.4.0.zip
+    docs: https://docs.ultraleap.com/TouchFree/touchfree-user-manual/tooling-for-web.html
+    description: JavaScript/TypeScript tooling to add touchless input actions and cursor rendering to web pages and web apps.
+  - name: TouchFree Tooling for Unity
+    kind: unity-package
+    language: csharp
+    version: 1.1.0
+    loader: https://github.com/ultraleap/TouchFreeUnityTooling
+    download: https://s3.eu-west-1.amazonaws.com/downloads.ultraleap.com/software/touchfree/1.1.0/touchfree-tooling-unity-1.1.0.zip
+    docs: https://docs.ultraleap.com/TouchFree/touchfree-user-manual/tooling-for-unity.html
+    description: Unity tooling to add touchless interaction to Unity applications.
+  - name: TouchFree application and service
+    kind: desktop-service
+    version: 2.6.1
+    download: https://s3.eu-west-1.amazonaws.com/downloads.ultraleap.com/software/touchfree/2.6.1/touchfree-windows-2.6.1.zip
+    docs: https://docs.ultraleap.com/TouchFree/touchfree-user-manual/index.html
+    description: Windows application and service that converts tracking data into touch-screen-style input that the tooling libraries consume.
+- family: Unity plugin interaction components
+  description: Prefabs and scripts inside com.ultraleap.tracking for hands, physical hands, UI interaction and XR keyboard experiences.
+  docs: https://docs.ultraleap.com/xr-and-tabletop/xr/unity/plugin/index.html
+  components:
+  - name: XR-Keyboard
+    kind: unity-package
+    language: csharp
+    loader: https://github.com/ultraleap/XR-Keyboard
+    description: Reusable physical XR keyboard for short string entry with Ultraleap hand tracking.
+  - name: Unity Hand Interaction Experiments
+    kind: unity-samples
+    language: csharp
+    loader: https://github.com/ultraleap/Unity-Hand-Interaction-Experiments
+    description: Sample interaction patterns built on the Unity plugin.

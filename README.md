@@ -64,5 +64,8 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Ultraleap is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.hiive.com/securities/ultraleap-stock
+Ultraleap Limited (Bristol, UK) is the hand-tracking and mid-air haptics company formed in 2019 when Ultrahaptics acquired Leap Motion. It ships the Leap Motion Controller 2 and Stereo IR 170 / 3Di hand-tracking cameras, the Ultraleap Hand Tracking Software (Gemini V5, now Hyperion V6) with its native LeapC C API, first-party Unity and Unreal plugins, an implicit OpenXR API layer implementing XR_EXT_hand_tracking, Python bindings, a LeapJS-compatible tracking WebSocket server, and the TouchFree touchless interaction tooling for web and Unity. Its ultrasonic haptics SDK is supplied on request rather than published. The developer surface is a locally installed SDK and service, not a hosted HTTP API, so there is no OpenAPI or base URL. In 2025 the company announced it is joining ROLI, the music-technology company.
+
+- Website: https://www.ultraleap.com/
+- Developer docs: https://docs.ultraleap.com/
+- GitHub: https://github.com/ultraleap

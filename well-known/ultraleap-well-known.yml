@@ -1,0 +1,203 @@
+generated: '2026-09-18'
+method: probed
+source: live HTTP probe 2026-09-18 (curl, browser User-Agent)
+notes: No /.well-known/ discovery surface, apis.json, openapi.json, llms.txt or A2A agent card is published
+  on any Ultraleap host. ultraleap.com 302s every path to www.ultraleap.com, which answers 404 (an Eleventy
+  static site whose 404 page is the homepage shell, served WITH a 404 status, so it is a true miss). docs.ultraleap.com
+  is an S3-backed static site that answers 403 AccessDenied for any object that does not exist (its published
+  pages return 200), so 403 there means absent, not bot-blocked. support.ultraleap.com does not resolve
+  in DNS (the site links to it but the host is gone). No WellKnown or SecurityTxt pointer is wired in
+  apis.yml because nothing was found.
+hosts:
+- host: ultraleap.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 302
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 302
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 302
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 302
+    file: null
+  - path: /.well-known/api-catalog
+    status: 302
+    file: null
+  - path: /.well-known/api-catalog.json
+    status: 302
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 302
+    file: null
+  - path: /.well-known/ucp.json
+    status: 302
+    file: null
+  - path: /.well-known/acp.json
+    status: 302
+    file: null
+  - path: /.well-known/aauth-resource.json
+    status: 302
+    file: null
+  - path: /.well-known/apis.json
+    status: 302
+    file: null
+  - path: /apis.json
+    status: 302
+    file: null
+  - path: /apis.yml
+    status: 302
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 302
+    file: null
+  - path: /.well-known/agent.json
+    status: 302
+    file: null
+  - path: /openapi.json
+    status: 302
+    file: null
+  - path: /openapi.yaml
+    status: 302
+    file: null
+  - path: /swagger.json
+    status: 302
+    file: null
+  - path: /llms.txt
+    status: 302
+    file: null
+  - path: /robots.txt
+    status: 302
+    file: null
+  note: Every path 302s to https://www.ultraleap.com/ (same path), probed there.
+- host: www.ultraleap.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 301
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 301
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 301
+    file: null
+  - path: /.well-known/api-catalog
+    status: 301
+    file: null
+  - path: /.well-known/api-catalog.json
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/ucp.json
+    status: 404
+    file: null
+  - path: /.well-known/acp.json
+    status: 404
+    file: null
+  - path: /.well-known/aauth-resource.json
+    status: 404
+    file: null
+  - path: /.well-known/apis.json
+    status: 404
+    file: null
+  - path: /apis.json
+    status: 404
+    file: null
+  - path: /apis.yml
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /openapi.json
+    status: 404
+    file: null
+  - path: /openapi.yaml
+    status: 404
+    file: null
+  - path: /swagger.json
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+  - path: /robots.txt
+    status: 404
+    file: null
+- host: docs.ultraleap.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 403
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 403
+    file: null
+  - path: /.well-known/api-catalog
+    status: 403
+    file: null
+  - path: /.well-known/api-catalog.json
+    status: 403
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 403
+    file: null
+  - path: /.well-known/ucp.json
+    status: 403
+    file: null
+  - path: /.well-known/acp.json
+    status: 403
+    file: null
+  - path: /.well-known/aauth-resource.json
+    status: 403
+    file: null
+  - path: /.well-known/apis.json
+    status: 403
+    file: null
+  - path: /apis.json
+    status: 403
+    file: null
+  - path: /apis.yml
+    status: 403
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 403
+    file: null
+  - path: /.well-known/agent.json
+    status: 403
+    file: null
+  - path: /openapi.json
+    status: 403
+    file: null
+  - path: /openapi.yaml
+    status: 403
+    file: null
+  - path: /swagger.json
+    status: 403
+    file: null
+  - path: /llms.txt
+    status: 403
+    file: null
+  - path: /robots.txt
+    status: 403
+    file: null
+  note: 'S3 static origin: 403 AccessDenied is the missing-object response.'
+- host: support.ultraleap.com
+  status: NXDOMAIN
+  documents: []
+  note: Linked from www.ultraleap.com/contact/ but does not resolve (2026-09-18).

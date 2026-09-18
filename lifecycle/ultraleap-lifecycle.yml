@@ -1,0 +1,77 @@
+generated: '2026-09-18'
+method: searched
+source: >-
+  https://docs.ultraleap.com/hand-tracking/index.html +
+  https://docs.ultraleap.com/hand-tracking/gemini-migration.html +
+  https://docs.ultraleap.com/openxr/changelog/index.html +
+  https://www.ultraleap.com/downloads/leap-motion-controller-2/ + https://www.ultraleap.com/
+notes: >-
+  The Ultraleap developer surface is a locally installed native SDK and tracking service, so
+  versioning is software-release versioning of the Hand Tracking Software (Orion V4 -> Gemini V5
+  -> Hyperion V6) rather than a hosted API version path. There is no status page (nothing is
+  hosted), no published deprecation policy, no SLA and no Sunset/Deprecation header surface.
+  The only formal migration document is the Gemini V5.2+ upgrade guide. The corporate lifecycle
+  matters here too: the homepage (2025) states "Ultraleap is joining ROLI", and several linked
+  hosts (support.ultraleap.com, www.ultraleap.com/licensing/, developer.leapmotion.com) no longer
+  resolve or 404, so parts of the published surface are already decaying.
+versioning:
+  scheme: software-release
+  generations:
+  - name: Orion
+    major: V4
+    status: superseded
+    note: Legacy Leap Motion tracking; shipped the LeapJS WebSocket protocol.
+  - name: Gemini
+    major: V5
+    status: superseded
+    note: Ultraleap Hand Tracking Software 5.x; LeapC + engine plugins. Python bindings require 5.17+.
+    migration_guide: https://docs.ultraleap.com/hand-tracking/gemini-migration.html
+  - name: Hyperion
+    major: V6
+    status: current
+    current_version: 6.2.0
+    released: '2025-09-22'
+    note: Adds the Hinting API, tracking models, AR marker tracking, performance modes and direct camera access.
+    docs: https://docs.ultraleap.com/hand-tracking/Hyperion/index.html
+  openxr_api_layer:
+    scheme: semver
+    format: keep-a-changelog
+    current_version: 1.7.0
+    changelog: https://docs.ultraleap.com/openxr/changelog/index.html
+  unity_plugin:
+    scheme: semver
+    current_version: 7.3.0
+    released: '2026-02-25'
+    releases: https://github.com/ultraleap/UnityPlugin/releases
+  docs: https://docs.ultraleap.com/hand-tracking/index.html
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  deprecated_surfaces:
+  - surface: LeapJS WebSocket protocol (Orion V4)
+    status: removed-in-gemini-v5
+    replacement: https://github.com/ultraleap/UltraleapTrackingWebSocket
+    note: Open-source server restores the LeapJS v6 protocol for Gemini V5 and above.
+  - surface: Legacy C++, Java, JavaScript, Python and Objective-C bindings
+    status: legacy
+    note: docs.ultraleap.com/hand-tracking lists these as legacy bindings; C# is the official binding alongside LeapC.
+  - surface: github.com/ultraleap/OpenXRHandTracking
+    status: archived
+    note: Archived 2022; the OpenXR API layer now ships inside the tracking software installer.
+  - surface: leapmotion.com / developer.leapmotion.com / support.leapmotion.com
+    status: retired
+    note: Original Leap Motion hosts no longer resolve in DNS; docs.ultraleap.com is the live surface.
+  - surface: support.ultraleap.com
+    status: unresolvable
+    note: Linked from www.ultraleap.com/contact/ and /downloads/ but NXDOMAIN on 2026-09-18.
+support:
+  contact: https://www.ultraleap.com/contact/
+  email: support@ultraleap.com
+  community: https://discord.com/invite/3VCndThqxS
+  issues: https://github.com/ultraleap/UnityPlugin/issues
+status_page: null
+sla: null
+corporate:
+  note: Homepage states "Ultraleap is joining ROLI" (https://roli.com); the developer surface remains published as of 2026-09-18.
