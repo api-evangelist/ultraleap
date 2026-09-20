@@ -1,0 +1,14 @@
+{
+  "repo": "ultraleap",
+  "feeds": [
+    {
+      "source": "https://www.ultraleap.com/products/",
+      "feed_url": "https://www.ultraleap.com/products/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-09-19T20:17:39Z"
+}
