@@ -11,6 +11,23 @@ description: >-
   request rather than published. The developer surface is a locally installed
   SDK and service, not a hosted HTTP API, so there is no OpenAPI or base URL. In 2025
   the company announced it is joining ROLI, the music-technology company.
+deliveryModel:
+  model: saas
+  license_evidence:
+    not_product:
+    - ultraleap/openxrhandtracking
+    - ultraleap/touchfreewebtooling
+    - ultraleap/ultraleaptrackingwebsocket
+  open_source: unknown
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: low
+  source:
+  - pricing
+  - repository-not-product
+  generated: '2026-09-25'
+  method: derived
 image: https://avatars.githubusercontent.com/u/51484212?v=4
 url: https://raw.githubusercontent.com/api-evangelist/ultraleap/refs/heads/main/apis.yml
 x-type: company
@@ -23,7 +40,7 @@ modified: '2026-09-18'
 tags:
 - Company
 - Hand Tracking
-- Computer-Vision
+- Computer Vision
 - Spatial Computing
 - Haptics
 - Augmented Reality
@@ -48,6 +65,7 @@ tags_raw:
 - SDK
 - Hardware
 - Human Computer Interaction
+- Computer-Vision
 apis:
 - aid: ultraleap:leapc-tracking-api
   name: LeapC Tracking API
