@@ -45,7 +45,7 @@ tags:
 - Haptics
 - Augmented Reality
 - Virtual Reality
-- XR
+- Extended Reality
 - Gesture Recognition
 - OpenXR
 - SDK
@@ -100,6 +100,10 @@ apis:
     XR_FB_hand_tracking_aim to any OpenXR application without code changes.
   humanURL: https://docs.ultraleap.com/openxr/index.html
   tags:
+  - OpenXR
+  - Hand Tracking
+  - Extended Reality
+  tags_raw:
   - OpenXR
   - Hand Tracking
   - XR
